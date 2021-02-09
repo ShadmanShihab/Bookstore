@@ -34,4 +34,9 @@ public class BookController {
     }
 
 
+    //Search Book by writer's name
+//    @RequestMapping(method = RequestMethod.GET, value = "/books/{writersName}")
+//    public List<Book> getBookByWritersName(@PathVariable String writersName){
+//        return bookService.getBookByWritersName(writersName);
+//    }
 }

@@ -32,22 +32,24 @@ public class BookService {
 
     public List<Book> getBookByCategoryName(String category) {
 
+        //all books are stored in a list
         List<Book> data = bookRepository.findAll();
-        System.out.println(data);
-        Integer ans = null;
+
+        //empty list to store required books
         List<Book> llist = new LinkedList<Book>();
+
+        //index of required books list
+        int index = 0;
 
         for(int i=0; i<data.size(); i++){
             Book b = data.get(i);
-            System.out.println(b.getBookName());
             Category c = b.getCategory();
 
             if(c.getCategoryName().equals(category)){
-                ans = i;
-                break;
+                llist.add(index, data.get(i));
+                index = index + 1;
             }
         }
-        llist.add(0, data.get(ans));
         return llist;
     }
 }
