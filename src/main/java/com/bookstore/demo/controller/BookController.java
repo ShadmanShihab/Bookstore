@@ -9,34 +9,36 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/books")
 public class BookController {
 
     @Autowired
     BookService bookService;
 
     //Add new book
-    @RequestMapping(method = RequestMethod.POST, value = "/books")
+    @PostMapping
     public boolean addBook(@RequestBody Book book){
         return bookService.addNewBook(book);
     }
 
     //get books
-    @RequestMapping(method = RequestMethod.GET, value = "/books")
+    @GetMapping
     public List<Book> getbooks(){
         return bookService.getAllBooks();
     }
 
 
     //get books by category
-    @RequestMapping(method = RequestMethod.GET, value = "/books/{categoryName}")
+    @GetMapping("/categories/{categoryName}")
     public List<Book> getBookByCategoryName(@PathVariable String categoryName){
         return bookService.getBookByCategoryName(categoryName);
     }
 
 
     //Search Book by writer's name
-//    @RequestMapping(method = RequestMethod.GET, value = "/books/{writersName}")
-//    public List<Book> getBookByWritersName(@PathVariable String writersName){
-//        return bookService.getBookByWritersName(writersName);
-//    }
+    @GetMapping("/writers/{writersName}")
+    public List<Book> getBookByWritersName(@PathVariable String writersName){
+        List<Book> bookByWritersName = bookService.getBookByWritersName(writersName);
+        return bookByWritersName;
+    }
 }

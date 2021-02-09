@@ -52,4 +52,31 @@ public class BookService {
         }
         return llist;
     }
+
+
+    //get book by writer's name
+    public List<Book> getBookByWritersName(String writersName) {
+        System.out.println("I am here");
+        //storing all book data in a list
+        List<Book> bookData = bookRepository.findAll();
+
+        //an empty list to store required books
+        List<Book> requiredBooks = new LinkedList<Book>();
+
+        //Index for requiredBooks
+        Integer index = 0;
+        System.out.println("I am here");
+
+        for(int i=0; i<bookData.size(); i++){
+
+            Book currentBook = bookData.get(i);
+
+            if(currentBook.getBookWriterName().equals(writersName)){
+                requiredBooks.add(0, bookData.get(i));
+                //index = index + 1;
+            }
+        }
+        return  requiredBooks;
+    }
+
 }
