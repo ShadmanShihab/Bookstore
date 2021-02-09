@@ -41,4 +41,10 @@ public class BookController {
         List<Book> bookByWritersName = bookService.getBookByWritersName(writersName);
         return bookByWritersName;
     }
+
+    //Search book within given price range
+    @GetMapping("/prices/{limit}")
+    public List<Book> getBooksListWithinPriceRange(@PathVariable double limit){
+        return  bookService.getBookListWithinPriceRange(limit);
+    }
 }
