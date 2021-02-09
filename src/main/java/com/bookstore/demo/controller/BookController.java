@@ -3,10 +3,7 @@ package com.bookstore.demo.controller;
 import com.bookstore.demo.model.Book;
 import com.bookstore.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,4 +25,13 @@ public class BookController {
     public List<Book> getbooks(){
         return bookService.getAllBooks();
     }
+
+
+    //get books by category
+    @RequestMapping(method = RequestMethod.GET, value = "/books/{categoryName}")
+    public List<Book> getBookByCategoryName(@PathVariable String categoryName){
+        return bookService.getBookByCategoryName(categoryName);
+    }
+
+
 }
