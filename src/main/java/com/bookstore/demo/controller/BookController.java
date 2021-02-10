@@ -1,6 +1,7 @@
 package com.bookstore.demo.controller;
 
 import com.bookstore.demo.model.Book;
+import com.bookstore.demo.model.GetBookByPriceRange;
 import com.bookstore.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,8 +44,8 @@ public class BookController {
     }
 
     //Search book within given price range
-    @GetMapping("/prices/{limit}")
-    public List<Book> getBooksListWithinPriceRange(@PathVariable double limit){
-        return  bookService.getBookListWithinPriceRange(limit);
+    @PostMapping("/prices")
+    public List<Book> getBooksListWithinPriceRange(@RequestBody GetBookByPriceRange getBookByPriceRange){
+        return  bookService.getBookListWithinPriceRange(getBookByPriceRange);
     }
 }

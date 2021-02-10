@@ -1,14 +1,19 @@
 package com.bookstore.demo.model;
 
+import java.util.List;
+
 public class Book {
     private String id;
     private String bookName;
     private String bookWriterName;
     private double price;
-    private Category category;
+    private List<Category> category;
+    public GetBookByPriceRange getBookByPriceRange;
 
+    public Book() {
+    }
 
-    public Book(String id, String bookName, String bookWriterName, double price, Category category) {
+    public Book(String id, String bookName, String bookWriterName, double price, List<Category> category) {
         this.id = id;
         this.bookName = bookName;
         this.bookWriterName = bookWriterName;
@@ -49,11 +54,11 @@ public class Book {
         this.price = price;
     }
 
-    public Category getCategory() {
+    public List<Category> getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(List<Category> category) {
         this.category = category;
     }
 }
