@@ -86,8 +86,7 @@ public class BookService {
 
     public List<Book> getBookListWithinPriceRange(GetBookByPriceRange getBookByPriceRange) {
         //return  bookRepository.priceRange(getBookByPriceRange);
-
-        //storing all book data in a list
+                //storing all book data in a list
         List<Book> bookData = bookRepository.findAll();
 
         //an empty list to store required books
