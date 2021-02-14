@@ -13,7 +13,7 @@ public class Book {
     private String bookName;
     private String bookWriterName;
     private double price;
-    @DBRef
+//    @DBRef
     private List<Category> category;
     public GetBookByPriceRange getBookByPriceRange;
 

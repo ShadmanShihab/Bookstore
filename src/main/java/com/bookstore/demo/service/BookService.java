@@ -8,101 +8,90 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class BookService {
 
-    @Autowired
+
     BookRepository bookRepository;
 
+    @Autowired
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     public boolean addNewBook(Book book) {
-        try{
+        try {
             bookRepository.save(book);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        List<Book> data = bookRepository.findAll();
+        if (data.size() != 0) {
+            return data;
+        } else {
+            return data;
+        }
     }
 
     public List<Book> getBookByCategoryName(String categoryName) {
+        try {
+            List<Book> data = bookRepository.findByCategoryName(categoryName);
+            if (data.size() != 0)
+                return data;
 
-        return bookRepository.findByCategoryName(categoryName);
-//
-//        //all books are stored in a list
-//        List<Book> data = bookRepository.findAll();
-//
-//        //empty list to store required books
-//        List<Book> llist = new LinkedList<Book>();
-//
-//        //index of required books list
-//        int index = 0;
-//
-//        for(int i=0; i<data.size(); i++){
-//            Book b = data.get(i);
-//            List<Category> c = b.getCategory();
-//
-//            for(int j=0; j<c.size(); j++){
-//                if(c.get(j).getCategoryName().equals(category)){
-//                    llist.add(index, data.get(i));
-//                    index = index + 1;
-//                }
-//            }
-//
-//        }
-   //     return llist;
+            return data;
+
+        } catch (Exception e) {
+            return Arrays.asList(new Book());
+        }
+
     }
 
 
     //get book by writer's name
     public List<Book> getBookByWritersName(String writersName) {
-        return bookRepository.findByWritersName(writersName);
-//        //storing all book data in a list
-//        List<Book> bookData = bookRepository.findAll();
-//
-//        //an empty list to store required books
-//        List<Book> requiredBooks = new LinkedList<Book>();
-//
-//        //Index for requiredBooks
-//        Integer index = 0;
-//
-//        for(int i=0; i<bookData.size(); i++){
-//
-//            Book currentBook = bookData.get(i);
-//
-//            if(currentBook.getBookWriterName().equals(writersName)){
-//                requiredBooks.add(0, bookData.get(i));
-//                //index = index + 1;
-//            }
-//        }
-//        return  requiredBooks;
+        List<Book> data = bookRepository.findByWritersName(writersName);
+
+        if (data.size() != 0)
+            return data;
+
+        return data;
     }
 
     public List<Book> getBookListWithinPriceRange(GetBookByPriceRange getBookByPriceRange) {
         //return  bookRepository.priceRange(getBookByPriceRange);
-                //storing all book data in a list
-        List<Book> bookData = bookRepository.findAll();
 
-        //an empty list to store required books
-        List<Book> requiredBooks = new LinkedList<Book>();
+        try {
+            //storing all book data in a list
+            List<Book> bookData = bookRepository.findAll();
 
-        //Index for requiredBooks
-        Integer index = 0;
-
-        for(int i=0; i<bookData.size(); i++){
-            Book b = bookData.get(i);
-
-            if(b.getPrice() >= getBookByPriceRange.getLowerLimit() && b.getPrice() <= getBookByPriceRange.getUpperLimit()){
-                requiredBooks.add(index, bookData.get(i));
-                index = index + 1;
+            if (bookData.size() == 0) {
+                return bookData;
             }
+            //an empty list to store required books
+            List<Book> requiredBooks = new LinkedList<Book>();
+            //Index for requiredBooks
+            Integer index = 0;
+            for (int i = 0; i < bookData.size(); i++) {
+                Book b = bookData.get(i);
+
+                if (b.getPrice() >= getBookByPriceRange.getLowerLimit() && b.getPrice() <= getBookByPriceRange.getUpperLimit()) {
+                    requiredBooks.add(index, bookData.get(i));
+                    index = index + 1;
+                }
+            }
+            return requiredBooks;
+        } catch (Exception e) {
+            return Arrays.asList(new Book());
         }
-        return requiredBooks;
     }
+
 }

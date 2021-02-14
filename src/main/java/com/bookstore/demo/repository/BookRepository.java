@@ -15,6 +15,6 @@ public interface BookRepository extends MongoRepository<Book, String> {
     @Query("{ 'bookWriterName' : ?0 }")
     List<Book> findByWritersName(String bookWriterName);
 
-    @Query(value = "{ 'getBookBypriceRange' : ?0 }")
-    List<Book> priceRange(GetBookByPriceRange getBookByPriceRange);
+//    @Query(value = "{ 'getBookBypriceRange' : ?0 }")
+//    List<Book> priceRange(GetBookByPriceRange getBookByPriceRange);
 }
