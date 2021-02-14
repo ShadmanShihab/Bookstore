@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class CategoryService {
 
-    @Autowired
+
     CategoryRepository categoryRepository;
+    @Autowired
+    public CategoryService(CategoryRepository categoryRepository){
+        this.categoryRepository = categoryRepository;
+    }
 
     public boolean addNewCategories(Category category) {
         try{
@@ -24,6 +28,10 @@ public class CategoryService {
     }
 
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        List<Category> categories = categoryRepository.findAll();
+        if(categories.size() == 0)
+            return categories;
+        else
+            return categories;
     }
 }
