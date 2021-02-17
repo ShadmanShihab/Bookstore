@@ -16,5 +16,5 @@ FUNCTIONALITIES:
 |Add Books                     | /books                        |      POST     |
 |Search Books By Category      | /books/categories/{category}  |      GET      |
 |Search Books By Writer's name | /books/writers/{name}         |      GET      |
-|Search Books By Price range   | /books/prices/{price}         |      GET      |
+|Search Books By Price range   | /books/prices/                |      POST     |
 ________________________________________________________________________________
